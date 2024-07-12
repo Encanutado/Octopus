@@ -42,6 +42,19 @@ app.get('/user', (req, res) => {
   });
 });
 
+app.get('/users', (req, res) => {
+    const query = 'SELECT * FROM users';
+    db.query(query, (err, results) => {
+      if (err) {
+        console.error('Error fetching users:', err);
+        return res.status(500).send('Internal server error');
+      }
+  
+      res.json(results);
+    });
+  });
+  
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
